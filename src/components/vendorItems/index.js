@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ProductCard from '../productCard';
 
-function VendorList() {
-  const { categoryID } = useParams(); // Retrieve the parameter from the URL
-  console.log(useParams)
-  const [vendors, setVendors] = useState([]);
+function VendorItems() {
+  const [products, setProducts] = useState([]);
+  const { vendorId } = useParams(); // Retrieve the parameter from the URL
 
-  const handleOptionClick = (selectedOption) => {
-    window.location.href=`/products/${selectedOption}`
-  };
-
+console.log()
   useEffect(() => {
     const fetchData = async () => {
         try {
    const apiHeaders = new Headers();
    apiHeaders.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVibnZncGl6eHFlbnd1bGVnYnJhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5NTEyMzEyMywiZXhwIjoyMDEwNjk5MTIzfQ.vZJ8YppwdE4YwiUW4_ZX2eoj_U8kEb5cj9V5eKZQdgk');  
    apiHeaders.append('apikey', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVibnZncGl6eHFlbnd1bGVnYnJhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5NTEyMzEyMywiZXhwIjoyMDEwNjk5MTIzfQ.vZJ8YppwdE4YwiUW4_ZX2eoj_U8kEb5cj9V5eKZQdgk')
-          const response = await fetch(`https://ubnvgpizxqenwulegbra.supabase.co/rest/v1/vendor?category=eq.${categoryID}&select`,
+          const response = await fetch(`https://ubnvgpizxqenwulegbra.supabase.co/rest/v1/vendor?id=eq.${vendorId}&select=*,product(*)`,
   {
   method: 'GET',
   headers: apiHeaders
@@ -26,23 +23,22 @@ function VendorList() {
             throw new Error('Network response was not ok');
           }
           const data = await response.json();
-          setVendors(data);
+          setProducts(data);
         } catch (error) {
           console.error('Error fetching vendors:', error);
   }
   };
 
     fetchData();
-  }, [categoryID]);
+  }, []);
 
   return (
     <div>
-      <h2>Vendors</h2>
+        <h2>Vendors - {products[0]?.name}</h2>
       <div className="card-container">
-        {vendors.map((vendor) => (
-          <div className="card" key={vendor.id} style={{display:"flex", flexDirection:"row"}}>
-            <h3>{vendor.name}</h3>
-      <button type="button" class="btn btn-primary mx-2" onClick={() => handleOptionClick(vendor.id)}>Shop items</button>
+        {products[0]?.product?.map((item) => (
+          <div className="card" key={item.id} >
+           <ProductCard productName={item.name} price={item.price} status={"active"} vendorName={products[0].name}/>
           </div>
         ))}
       </div>
@@ -50,4 +46,4 @@ function VendorList() {
   );
 }
 
-export default VendorList;
+export default VendorItems;

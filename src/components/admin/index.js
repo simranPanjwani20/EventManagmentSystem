@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import HomeComponent from '../home';
 import VendorComponent from '../vendor';
 import UserComponent from '../user'; 
+import VendorDetail from '../vendorDetail';
 
 function Admin() {
   const [showVendor, setShowVendor] = useState(false);
@@ -21,7 +22,7 @@ function Admin() {
     
     <div>
       {showVendor ? (
-        <VendorComponent />
+       <VendorDetail/>
       ) : showUser ? (
         <UserComponent />
       ) : (

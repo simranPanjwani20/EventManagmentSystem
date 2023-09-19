@@ -5,6 +5,14 @@ const UserComponent = () => {
         // Use history.push to change the URL to the selected option
         window.location.href=`/${selectedOption}`
       };
+
+      const handleCart = () => {
+        window.location.href=`/cart`
+      };
+
+      const handleGuestList = () => {
+        window.location.href=`/guestList`
+      };
   return (
     <div className='content' style={{ position:"relative", top: "50%", left: "40%", padding:"20px"}}>
       <h1>Welcome User</h1>
@@ -20,8 +28,8 @@ const UserComponent = () => {
     <li><a onClick={() => handleOptionClick('4')} class="dropdown-item" href="#">Lighting</a></li>
   </ul>
 {/* </div> */}
-      <button type="button" class="btn btn-primary mx-2" onClick={() => console.log('Add New Item clicked')}>cart</button>
-      <button type="button" class="btn btn-primary mx-2" onClick={() => console.log('Transaction clicked')}>Guest List</button>
+      <button type="button" class="btn btn-primary mx-2" onClick={handleCart}>cart</button>
+      <button type="button" class="btn btn-primary mx-2" onClick={handleGuestList}>Guest List</button>
       <button type="button" class="btn btn-primary mx-2" onClick={() => console.log('Log Out clicked')}>Order status</button>
     </div>
   );

@@ -1,9 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useBag } from '../../context/bag';
 
 function ProductList() {
   const { vendorId } = useParams(); // Retrieve the parameter from the URL
   const [products, setProducts] = useState([]);
+  const { addToBag } = useBag();
+  const [showNotification, setShowNotification] = useState(false);
+
+  const handleBag = (product) => {
+    setShowNotification(true);
+
+    // Set a timeout to hide the notification after 2 seconds
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 2000);
+    addToBag({
+      "name":product.name,
+      "productId":product.id
+    }
+      );
+ };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,25 +38,38 @@ function ProductList() {
             throw new Error('Network response was not ok');
           }
           const data = await response.json();
-          setVendors(data);
+          setProducts(data);
         } catch (error) {
           console.error('Error fetching vendors:', error);
   }
   };
 
     fetchData();
-  }, [paramFromURL]);
+  }, [vendorId]);
 
   return (
     <div>
       <h2>Vendors</h2>
       <div className="card-container">
         {products.map((product) => (
-          <div className="card" key={product.id}>
+          <div className="card" key={product.id} style={{display:"flex", flexDirection:"row"}}>
             <h3>{product.name}</h3>
-            <button type="button" class="btn btn-primary mx-2" onClick={() => console.log('Log Out clicked')}>Add to Cart</button>
+            <button type="button" class="btn btn-primary mx-2" onClick={()=>handleBag(product) }> Add to Cart</button>
+            
           </div>
         ))}
+        {showNotification && (
+        <div className="notification" style={{
+            bottom:" 20px",
+            right: "20px",
+            backgroundColor: "#4CAF50",
+            color: "white",
+            padding: "10px",
+            borderRadius: "5px",
+            display: "flex"}}>
+          <p>Added</p>
+        </div>
+      )}
       </div>
     </div>
   );
