@@ -22,8 +22,8 @@ const UserComponent = () => {
   </a>
 
   <ul class="dropdown-menu">
-    <li> <a onClick={() => handleOptionClick('1')} class="dropdown-item" href="#">Catering</a></li>
     <li><a onClick={() => handleOptionClick('1')} class="dropdown-item" href="#">Florist</a></li>
+    <li> <a onClick={() => handleOptionClick('2')} class="dropdown-item" href="#">Catering</a></li>
     <li><a onClick={() => handleOptionClick('3')} class="dropdown-item" href="#">Decoration</a></li>
     <li><a onClick={() => handleOptionClick('4')} class="dropdown-item" href="#">Lighting</a></li>
   </ul>

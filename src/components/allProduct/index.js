@@ -49,12 +49,12 @@ function ProductList() {
 
   return (
     <div>
-      <h2>Vendors</h2>
-      <div className="card-container">
+      <h2 style={{textAlign:"center"}}>Vendors</h2>
+      <div className="card-container" style={{display:"flex", flexDirection:"row", flexWrap:"wrap", gap:"1rem", padding:"1rem"}}>
         {products.map((product) => (
-          <div className="card" key={product.id} style={{display:"flex", flexDirection:"row"}}>
+          <div className="card" key={product.id} style={{display:"flex", flexDirection:"column", alignItems:"center", width: "fitContent", padding: "1rem"}}>
             <h3>{product.name}</h3>
-            <button type="button" class="btn btn-primary mx-2" onClick={()=>handleBag(product) }> Add to Cart</button>
+            <button type="button" class="btn btn-primary mx-2 w-4" onClick={()=>handleBag(product) }> Add to Cart</button>
             
           </div>
         ))}

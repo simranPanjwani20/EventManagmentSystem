@@ -37,10 +37,10 @@ function VendorList() {
 
   return (
     <div>
-      <h2>Vendors</h2>
-      <div className="card-container">
+      <h2 style={{textAlign:"center"}}>Vendors</h2>
+      <div className="card-container" style={{display:"flex", flexDirection:"row", flexWrap:"wrap", gap:"1rem", padding:"1rem"}}>
         {vendors.map((vendor) => (
-          <div className="card" key={vendor.id} style={{display:"flex", flexDirection:"row"}}>
+          <div className="card" key={vendor.id} style={{display:"flex", flexDirection:"column", alignItems:"center", width: "fitContent", padding: "1rem"}}>
             <h3>{vendor.name}</h3>
       <button type="button" class="btn btn-primary mx-2" onClick={() => handleOptionClick(vendor.id)}>Shop items</button>
           </div>
