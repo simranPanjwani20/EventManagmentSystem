@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 function VendorDetail() {
   const [vendorId, setVendorId] = useState('');
+  const [pass, setpass] = useState('');
  
 
   const handleLoginClick = () => {
@@ -18,6 +19,12 @@ function VendorDetail() {
         placeholder="Enter Vendor ID"
         value={vendorId}
         onChange={(e) => setVendorId(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Enter Password"
+        value={pass}
+        onChange={(e) => setpass(e.target.value)}
       />
       <button onClick={handleLoginClick}>Login</button>
     </div>

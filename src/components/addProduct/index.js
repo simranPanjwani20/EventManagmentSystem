@@ -41,6 +41,7 @@ function ProductForm() {
       if (response.ok) {
         // Handle success, e.g., show a success message or reset the form
         console.log('Product created successfully.');
+        <div>Product created</div>
         navigate(`/${vendorId}/allItems`);
       } else {
         // Handle errors, e.g., show an error message
