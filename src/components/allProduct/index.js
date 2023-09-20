@@ -9,7 +9,7 @@ function ProductList() {
   const [showNotification, setShowNotification] = useState(false);
 
   const handleBag = (product) => {
-    setShowNotification(true);
+    setShowNotification(true) ;
 
     // Set a timeout to hide the notification after 2 seconds
     setTimeout(() => {

@@ -50,4 +50,4 @@ function VendorList() {
   );
 }
 
-export default VendorList;
+export default VendorList ;

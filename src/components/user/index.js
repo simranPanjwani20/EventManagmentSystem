@@ -28,7 +28,7 @@ const UserComponent = () => {
     <li><a onClick={() => handleOptionClick('4')} class="dropdown-item" href="#">Lighting</a></li>
   </ul>
 {/* </div> */}
-      <button type="button" class="btn btn-primary mx-2" onClick={handleCart}>cart</button>
+      <button type="button" class="btn btn-primary mx-2" onClick={handleCart}>Cart</button>
       <button type="button" class="btn btn-primary mx-2" onClick={handleGuestList}>Guest List</button>
       <button type="button" class="btn btn-primary mx-2" onClick={() => console.log('Log Out clicked')}>Order status</button>
     </div>
